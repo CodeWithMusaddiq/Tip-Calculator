@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tip Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Tip Calculator</h1>
+    <p class="description">Enter the bill amount and tip percentage to calculate the total.</p>
+
+    <label>Bill amount:</label>
+    <input type="number" placeholder="Enter bill amount" id="bill">
+
+    <label>Tip percentage:</label>
+    <input type="number" placeholder="Enter tip" id="tip">
+
+    <button>CALCULATE</button>
+    <p class="result"></p>
+  </div>
+
+  <script>
+    bill_input = document.querySelector("#bill");
+    tip_input = document.querySelector("#tip");
+    btn = document.querySelector("button");
+    para = document.querySelector(".result");
+
+    btn.addEventListener("click", () => {
+      if (bill_input.value.trim() == "" || tip_input.value.trim() == "") {
+        alert("Enter the amount ");
+        return;
+      }
+      tip = Number(tip_input.value);
+      bill = Number(bill_input.value);
+      calculate = (bill * tip) / 100;
+      para.innerText = `Tip: ${calculate}`;
+    });
+
+    bill_input.addEventListener("keypress", (e) => {
+      if (e.key == "Enter") {
+        btn.click();
+      }
+    });
+    tip_input.addEventListener("keypress", (e) => {
+      if (e.key == "Enter") {
+        btn.click();
+      }
+    });
+
+    refresh = document.createElement("button");
+    refresh.innerText = "Clear all";
+    refresh.className = "clear-btn";
+    document.querySelector(".container").appendChild(refresh);
+    refresh.addEventListener("click", () => {
+      bill_input.value = "";
+      tip_input.value = "";
+      para.innerText = "";
+    });
+  </script>
+</body>
+</html>
